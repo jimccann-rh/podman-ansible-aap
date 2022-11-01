@@ -109,15 +109,17 @@
       containers.podman.podman_container:
         name: myservice2
         image: busybox
+        command: 'ls -lah && whoami && uptime'
         log_options: path=/var/log/mycontainer.json
         log_driver: k8s-file
         log_level: debug
 
 
     - name: get log file
-      set_fact:
-        contents: "{{ lookup('file', '/var/log/mycontainer.json') }}"
+      slurp:
+        src: /var/log/mycontainer.json
       become: true
+      register: contents
 
     - debug:
         msg:
