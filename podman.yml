@@ -107,7 +107,7 @@
 
     - name: Writing output to file
       containers.podman.podman_container:
-        name: myservice
+        name: myservice2
         image: busybox
         log_options: path=/var/log/container/mycontainer.json
         log_driver: k8s-file
