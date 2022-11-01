@@ -93,6 +93,5 @@
           - "{{ rhc }}"
           - "{{ rhc.stdout_lines }}"
           - "{{ rhci }}"
-          - "{{ rhci.stdout_lines }}"
 
 
