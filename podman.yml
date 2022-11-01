@@ -81,4 +81,11 @@
           - 8080:80
         volume:
           - "{{ webroot }}:/usr/local/apache2/htdocs/:exec"
+      register: rhc
+
+
+
+    - debug:
+        msg: "{{ rhc.stdout_lines }}"
+
 
