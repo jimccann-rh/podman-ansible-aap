@@ -93,8 +93,8 @@
 
     - debug:
         msg: 
-          - "{{ rhc }}"
-          - "{{ rhc.stdout_lines }}"
-          - "{{ rhci }}"
+          - "Run register {{ rhc }}"
+#          - "{{ rhc.stdout_lines }}"
+          - "Gather Facts on specific conatiner {{ rhci }}"
 
 
