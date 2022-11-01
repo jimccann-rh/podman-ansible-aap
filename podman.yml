@@ -121,7 +121,14 @@
       become: true
       register: contents
 
+
+    - name: decode remote content
+      set_fact:
+        remote_content: "{{contents.content | b64decode}}"
+
+
+
     - debug:
         msg:
-          - "File output {{ contents | b64decode }}"
+          - "File output {{ remote_content }}"
 
