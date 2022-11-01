@@ -117,6 +117,7 @@
     - name: get log file
       set_fact:
         contents: "{{ lookup('file', '/var/log/mycontainer.json') }}"
+      become: true
 
     - debug:
         msg:
