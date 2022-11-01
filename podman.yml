@@ -24,15 +24,15 @@
 #        update_cache: true
 
 
-    - name: lazy installs
-      ansible.builtin.shell: "{{ item }}"
-      become: true
-      loop:
-        - yum-config-manager --disable amzn2extra-docker
-        - yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-        - curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_7/devel:kubic:libcontainers:stable.repo
-        - yum -y install yum-plugin-copr
-        - yum -y copr enable lsm5/container-selinux
+#    - name: lazy installs
+#      ansible.builtin.shell: "{{ item }}"
+#      become: true
+#      loop:
+#        - yum-config-manager --disable amzn2extra-docker
+#        - yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+#        - curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/CentOS_7/devel:kubic:libcontainers:stable.repo
+#        - yum -y install yum-plugin-copr
+#        - yum -y copr enable lsm5/container-selinux
 
 
 #    - name: Install Packages
