@@ -109,7 +109,7 @@
       containers.podman.podman_container:
         name: myservice2
         image: busybox
-        command: 'echo $0 ; ls ; whoami ; uptime'
+        command: 'ls /bin'
         log_options: path=/var/log/mycontainer.json
         log_driver: k8s-file
         log_level: debug
