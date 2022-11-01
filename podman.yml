@@ -109,7 +109,7 @@
       containers.podman.podman_container:
         name: myservice2
         image: busybox
-        log_options: path=/var/log/container/mycontainer.json
+        log_options: path=/var/log/mycontainer.json
         log_driver: k8s-file
         log_level: debug
 
