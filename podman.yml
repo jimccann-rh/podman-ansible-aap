@@ -83,11 +83,16 @@
           - "{{ webroot }}:/usr/local/apache2/htdocs/:exec"
       register: rhc
 
-
+    - name: Gather facts on a specific container
+      containers.podman.podman_container_info:
+        name: webserver
+      register: rhci
 
     - debug:
         msg: 
           - "{{ rhc }}"
           - "{{ rhc.stdout_lines }}"
+          - "{{ rhci }}"
+          - "{{ rhci.stdout_lines }}"
 
 
