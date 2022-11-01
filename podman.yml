@@ -86,6 +86,8 @@
 
 
     - debug:
-        msg: "{{ rhc.stdout_lines }}"
+        msg: 
+          - "{{ rhc }}"
+          - "{{ rhc.stdout_lines }}"
 
 
