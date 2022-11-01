@@ -7,16 +7,7 @@
     webroot: "/webroot"
   tasks:
 
-
-#    - name: Add repository - Microsoft
-#      ansible.builtin.yum_repository:
-#        name: podman
-#        description: podman
-#        baseurl: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-#        gpgcheck: false
-#        enabled: true
-
-#    - name: Install epel-release
+#    - name: disable package
 #      ansible.builtin.yum:
 #        name:
 #          - amzn2extra-docker
@@ -34,18 +25,30 @@
 #        - yum -y install yum-plugin-copr
 #        - yum -y copr enable lsm5/container-selinux
 
+#sudo wget https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/old_podman/CentOS_7/devel:kubic:libcontainers:stable:old_podman.repo
 
-#    - name: Install Packages
-#      ansible.builtin.yum:
-#        state: latest
-#        name:
-#          - https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-#          - yum-plugin-copr
-#
+#In /etc/yum.repos.d/amzn2-core.repo comment out priority=10 line for [amzn2-core] repo
+
+
+    - name: add repo
+      copy:
+        content: >
+          [centos-base]
+          name=CentOS-7 - Base
+          baseurl=http://mirror.centos.org/centos-7/7/os/x86_64/
+          enabled=0
+          gpgcheck=0
+          [centos-extras]
+          name=CentOS-7 - Extras
+          baseurl=http://mirror.centos.org/centos-7/7/extras/x86_64/
+          gpgcheck=0
+        dest:  /etc/yum.repos.d/centos.repo
+
     - name: podman installed
       ansible.builtin.yum:
         name: podman
         state: latest
+        enablerepo: centos-base
 
     - name: pull image
       containers.podman.podman_image:
