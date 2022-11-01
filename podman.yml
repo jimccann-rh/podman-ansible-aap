@@ -123,5 +123,5 @@
 
     - debug:
         msg:
-          - "File output {{ contents }}"
+          - "File output {{ contents | b64decode }}"
 
