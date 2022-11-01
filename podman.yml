@@ -93,8 +93,32 @@
 
     - debug:
         msg: 
-          - "Run register {{ rhc }}"
+          - "Run register output {{ rhc }}"
 #          - "{{ rhc.stdout_lines }}"
-          - "Gather Facts on specific conatiner {{ rhci }}"
+          - "Gather Facts on specific container output {{ rhci }}"
 
+
+    - name: Writing output to journald
+      containers.podman.podman_container:
+        name: myservice
+        image: busybox
+        log_driver: journald
+        log_level: debug
+
+    - name: Writing output to file
+      containers.podman.podman_container:
+        name: myservice
+        image: busybox
+        log_options: path=/var/log/container/mycontainer.json
+        log_driver: k8s-file
+        log_level: debug
+
+
+    - name: get log file
+      set_facts:
+        contents: "{{ lookup('file', '/var/log/container/mycontainer.json') }}"
+
+    - debug:
+        msg:
+          - "File output {{ contents }}"
 
